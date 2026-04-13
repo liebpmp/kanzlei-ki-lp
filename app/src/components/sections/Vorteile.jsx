@@ -47,17 +47,20 @@ const benefits = [
   },
 ];
 
+const ease = [0.16, 1, 0.3, 1];
+
 const containerVariants = {
   hidden: {},
   visible: { transition: { staggerChildren: 0.1 } },
 };
 
 const cardVariants = {
-  hidden: { opacity: 0, y: 24 },
+  hidden: { opacity: 0, y: 24, scale: 0.95 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] },
+    scale: 1,
+    transition: { duration: 0.6, ease },
   },
 };
 
@@ -68,10 +71,10 @@ export default function Vorteile() {
         {/* Section header */}
         <motion.div
           className="flex flex-col items-center text-center gap-4 mb-16"
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-40px" }}
-          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          initial={{ opacity: 0, x: -32, filter: "blur(8px)" }}
+          whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.7, ease }}
         >
           <div className="flex items-center gap-2">
             <span className="size-1.5 rounded-full bg-maroon" />
@@ -95,7 +98,7 @@ export default function Vorteile() {
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "-40px" }}
+          viewport={{ once: true, margin: "-80px" }}
         >
           {benefits.map((benefit) => (
             <motion.div

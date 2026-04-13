@@ -1,21 +1,24 @@
 import { motion } from "framer-motion";
 import { Clock, Award, Users, Calendar, ShieldCheck } from "lucide-react";
+import AnimatedCounter from "../ui/AnimatedCounter";
 
 const stats = [
   { icon: Clock, value: "15h/Woche", label: "Davon nur 2 Live-Calls" },
   { icon: Award, value: "IHK-Zertifikat", label: "Anerkannter Abschluss" },
   { icon: Users, value: "Top-Dozenten", label: "Experten aus der Branche" },
-  { icon: Calendar, value: "6–12 Monate", label: "Flexibel anpassbar" },
+  { icon: Calendar, value: "6\u201312 Monate", label: "Flexibel anpassbar" },
   { icon: ShieldCheck, value: "Kein Ausfall", label: "Normaler Betrieb" },
 ];
 
 const modules = [
   { name: "KI-Basis: Prozessanalyse", hours: "160 UE" },
   { name: "KI-Basis: Low-Code Tools", hours: "160 UE" },
-  { name: "KI-Basis: Einführung & Recht", hours: "160 UE" },
+  { name: "KI-Basis: Einf\u00FChrung & Recht", hours: "160 UE" },
   { name: "KI-Spezialisierung Steuerbranche", hours: "240 UE" },
   { name: "Optional: KI-Spezialist (IHK)", hours: "320 UE" },
 ];
+
+const ease = [0.16, 1, 0.3, 1];
 
 const containerVariants = {
   hidden: {},
@@ -23,11 +26,21 @@ const containerVariants = {
 };
 
 const cardVariants = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: { opacity: 0, y: 20, scale: 0.95 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] },
+    scale: 1,
+    transition: { duration: 0.5, ease },
+  },
+};
+
+const rowVariants = {
+  hidden: { opacity: 0, x: -12 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.4, ease },
   },
 };
 
@@ -38,10 +51,10 @@ export default function Schulung() {
         {/* Section header */}
         <motion.div
           className="flex flex-col items-center text-center gap-4 mb-16"
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-40px" }}
-          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          initial={{ opacity: 0, x: -32, filter: "blur(8px)" }}
+          whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.7, ease }}
         >
           <div className="flex items-center gap-2">
             <span className="size-1.5 rounded-full bg-maroon" />
@@ -67,18 +80,18 @@ export default function Schulung() {
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "-40px" }}
+          viewport={{ once: true, margin: "-80px" }}
         >
           {stats.map((stat) => (
             <motion.div
               key={stat.value}
               variants={cardVariants}
-              className="flex flex-col items-center text-center gap-3 bg-cream rounded-sm p-5"
+              className="flex flex-col items-center text-center gap-3 bg-cream rounded-sm p-5 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_4px_16px_rgba(0,0,0,0.06)]"
             >
               <stat.icon className="size-5 text-maroon" />
               <div className="flex flex-col gap-0.5">
                 <span className="text-[16px] font-semibold text-text-primary">
-                  {stat.value}
+                  <AnimatedCounter value={stat.value} />
                 </span>
                 <span className="text-[12px] text-text-secondary">
                   {stat.label}
@@ -93,31 +106,39 @@ export default function Schulung() {
           className="bg-cream-dark rounded-sm overflow-hidden"
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-40px" }}
-          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.7, ease }}
         >
           <div className="px-6 py-4 border-b border-border-light">
             <h3 className="text-[15px] font-semibold text-text-primary">
               Modulübersicht
             </h3>
           </div>
-          {modules.map((mod, i) => (
-            <div
-              key={mod.name}
-              className={`flex items-center justify-between px-6 py-3.5 text-[14px] ${
-                i < modules.length - 1 ? "border-b border-border-light" : ""
-              } ${mod.name.includes("Optional") ? "bg-cream" : ""}`}
-            >
-              <span
-                className={`text-text-primary ${mod.name.includes("Optional") ? "italic" : ""}`}
+          <motion.div
+            variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.1 } } }}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-80px" }}
+          >
+            {modules.map((mod, i) => (
+              <motion.div
+                key={mod.name}
+                variants={rowVariants}
+                className={`flex items-center justify-between px-6 py-3.5 text-[14px] ${
+                  i < modules.length - 1 ? "border-b border-border-light" : ""
+                } ${mod.name.includes("Optional") ? "bg-cream" : ""}`}
               >
-                {mod.name}
-              </span>
-              <span className="text-text-secondary font-medium shrink-0 ml-4">
-                {mod.hours}
-              </span>
-            </div>
-          ))}
+                <span
+                  className={`text-text-primary ${mod.name.includes("Optional") ? "italic" : ""}`}
+                >
+                  {mod.name}
+                </span>
+                <span className="text-text-secondary font-medium shrink-0 ml-4">
+                  {mod.hours}
+                </span>
+              </motion.div>
+            ))}
+          </motion.div>
         </motion.div>
       </div>
     </section>
