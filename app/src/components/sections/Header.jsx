@@ -21,7 +21,11 @@ export default function Header() {
             className="h-9 w-auto"
           />
           <span className="text-text-muted text-[20px] font-light select-none">×</span>
-          <SteuerClaraLogo />
+          <img
+            src="./steuerclara-logo.svg"
+            alt="SteuerClara"
+            className="h-7 w-auto"
+          />
         </a>
 
         <nav className="hidden md:flex items-center gap-8">
@@ -76,24 +80,5 @@ export default function Header() {
         </div>
       )}
     </header>
-  );
-}
-
-/* SteuerClara text logo - matches their Framer site (maroon text) */
-function SteuerClaraLogo() {
-  return (
-    <svg viewBox="0 0 160 28" className="h-7 w-auto" aria-label="SteuerClara">
-      <text
-        x="0"
-        y="22"
-        fontFamily="'Inter', sans-serif"
-        fontWeight="700"
-        fontSize="22"
-        letterSpacing="-0.5"
-        fill="#A21E29"
-      >
-        SteuerClara
-      </text>
-    </svg>
   );
 }
