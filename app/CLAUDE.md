@@ -1,5 +1,20 @@
 # Project: KI-Mitarbeiter für Steuerkanzleien — Landing Page
 
+## ⚠️ ITERATION V3 — Tom's Feedback on V2:
+1. **Use V1 content quality** — V1 had excellent copy. Adopt the pain points, solution descriptions, specific German copy from `reference/v1-content.html`. The current V2 content is too thin/generic.
+2. **Add scroll animations** — V1 had smooth reveal-on-scroll (IntersectionObserver + translateY + opacity). Add framer-motion or CSS-based reveal animations to ALL sections.
+3. **More social proof** — Add more trust signals: partner logos, "Über 400 Unternehmen begleitet", certification badges, concrete numbers
+4. **Bolder headline** — H1 must POP. Larger, bolder. Consider highlight color on key words like "kostenlos" or "KI-Mitarbeiter"
+5. **Use REAL logos** — `public/fp-logo.png` (Förderperspektive, 1024x317) and `public/steuerclara-logo.png` (SteuerClara icon) in the header. Display both logos side by side with "×" between them.
+
+**READ `reference/v1-content.html` for the excellent copy to reuse!** Especially:
+- The 6 pain-point cards (Telefon-Chaos, DATEV-Zeitfresser, Fristen-Stress, Fachkräftemangel, Mandanten-Pingpong, Digitalisierungsdruck)
+- The solution descriptions
+- The Förderung section copy
+- The FAQ answers
+- The hero dashboard mockup concept
+- The social proof numbers
+
 ## CRITICAL: Clone steuerclara.de Design!
 This LP MUST look like it's from the same brand as steuerclara.de. Study these files FIRST:
 - `reference/steuerclara-source.html` — Original HTML structure
@@ -162,6 +177,38 @@ Build first with `npm run build`, then screenshot the dist/index.html.
 ## Addressing
 - "Sie" — formal B2B for Steuerberater
 
+## Animations (REQUIRED — V1 had great ones, V2 lacks them!)
+Use framer-motion for scroll-triggered animations:
+```jsx
+import { motion } from 'framer-motion';
+
+// Reveal on scroll pattern
+<motion.div
+  initial={{ opacity: 0, y: 24 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: true, margin: "-40px" }}
+  transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+>
+```
+- Every section header should animate in
+- Cards should stagger-animate (0.1s delay between each)
+- Use translateY(24px) → 0 + opacity for reveals
+- Hero elements should animate sequentially (badge → h1 → subtitle → CTAs → trust badges)
+- Pain cards should have hover effects (translateY(-3px) + shadow increase)
+
+## Social Proof (MORE than V2!)
+- "400+ Unternehmen erfolgreich begleitet" with counter animation
+- Logos/text badges: IHK, Agentur für Arbeit, DIHK, QCG
+- Trust strip below hero AND between sections
+- Add a testimonial or quote section if possible
+- Specific numbers: "720 Unterrichtseinheiten", "100% gefördert", "75% Lohnkosten zurück"
+
+## Logo Usage
+- Header: `<img src="/fp-logo.png" />` (Förderperspektive) × `<img src="/steuerclara-logo.png" />` (SteuerClara)
+- Display both at ~32-40px height, separated by "×" text
+- FP logo is full color (1024x317 PNG)
+- SC logo is an icon (64x64 PNG) — pair with text "SteuerClara" next to it
+
 ## Prohibitions
 - NO emoji as UI icons — use lucide-react SVG icons only
 - NO purple gradients
@@ -171,3 +218,4 @@ Build first with `npm run build`, then screenshot the dist/index.html.
 - Do NOT deviate from the steuerclara.de color palette and font choices
 - Do NOT use opacity:0 as scroll animation — use translateY
 - Content MUST be visible without JavaScript (critical content in HTML)
+- Do NOT load reference images repeatedly — load them ONCE at the start

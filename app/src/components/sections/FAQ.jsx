@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import {
   Accordion,
   AccordionContent,
@@ -8,27 +9,33 @@ import {
 const faqs = [
   {
     question: "Was kostet die Schulung?",
-    answer: "Nichts. Bei Kanzleien mit bis zu 50 Mitarbeitern übernimmt der Staat 100% der Schulungskosten über das Qualifizierungschancengesetz.",
+    answer:
+      "Nichts. Bei Kanzleien mit bis zu 50 Mitarbeitern übernimmt der Staat 100% der Schulungskosten über das Qualifizierungschancengesetz.",
   },
   {
     question: "Fallen meine Mitarbeiter im Tagesgeschäft aus?",
-    answer: "Kaum. Nur 2 kurze Live-Calls pro Woche, der Rest ist Praxis direkt an Ihren eigenen Systemen. Ihre Mitarbeiter arbeiten ganz normal weiter — nur mit KI-Fokus.",
+    answer:
+      "Kaum. Nur 2 kurze Live-Calls pro Woche, der Rest ist Praxis direkt an Ihren eigenen Systemen. Ihre Mitarbeiter arbeiten ganz normal weiter — nur mit KI-Fokus.",
   },
   {
     question: "Was ist das Qualifizierungschancengesetz?",
-    answer: "Ein Förderprogramm des Bundes. Unternehmen mit bis zu 49 Mitarbeitern bekommen 100% der Schulungskosten und 75% der Lohnkosten erstattet — für die gesamte Dauer der Maßnahme.",
+    answer:
+      "Ein Förderprogramm des Bundes. Unternehmen mit bis zu 49 Mitarbeitern bekommen 100% der Schulungskosten und 75% der Lohnkosten erstattet — für die gesamte Dauer der Maßnahme.",
   },
   {
     question: "Was kann der KI-Mitarbeiter konkret?",
-    answer: "Telefon-KI (Clara), DATEV-Automatisierung, Belegverarbeitung, Fristen-Management, Mandantenkommunikation und vorbereitende Buchhaltung — alles, was heute noch manuell läuft.",
+    answer:
+      "Telefon-KI (Clara), DATEV-Automatisierung, Belegverarbeitung, Fristen-Management, Mandantenkommunikation und vorbereitende Buchhaltung — alles, was heute noch manuell läuft.",
   },
   {
     question: "Wie lange dauert der Förderantrag?",
-    answer: "Ca. 4–6 Wochen. Wir übernehmen den kompletten Prozess für Sie — von der Antragstellung bis zur Bewilligung.",
+    answer:
+      "Ca. 4–6 Wochen. Wir übernehmen den kompletten Prozess für Sie — von der Antragstellung bis zur Bewilligung.",
   },
   {
     question: "Kann ich auch ohne Förderung starten?",
-    answer: "Ja! Viele Kanzleien entscheiden sich direkt für die Implementierung. Die Förderung ist ein Bonus, kein Muss.",
+    answer:
+      "Ja! Viele Kanzleien entscheiden sich direkt für die Implementierung. Die Förderung ist ein Bonus, kein Muss.",
   },
 ];
 
@@ -37,29 +44,46 @@ export default function FAQ() {
     <section id="faq" className="bg-cream-dark py-20 md:py-28 lg:py-32">
       <div className="mx-auto max-w-[800px] px-6 lg:px-10">
         {/* Section header */}
-        <div className="flex flex-col items-center text-center gap-4 mb-12">
+        <motion.div
+          className="flex flex-col items-center text-center gap-4 mb-12"
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-40px" }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+        >
           <h2 className="text-[clamp(1.75rem,4vw,2.75rem)] leading-tight tracking-tight text-text-primary">
             Häufige Fragen
           </h2>
-        </div>
+        </motion.div>
 
         {/* Accordion */}
-        <Accordion type="single" collapsible className="flex flex-col gap-2">
-          {faqs.map((faq, i) => (
-            <AccordionItem
-              key={i}
-              value={`faq-${i}`}
-              className="bg-white rounded-sm border border-border-light px-6 data-[state=open]:border-maroon/20"
-            >
-              <AccordionTrigger className="text-[15px] font-medium text-text-primary text-left py-4 cursor-pointer hover:no-underline">
-                {faq.question}
-              </AccordionTrigger>
-              <AccordionContent className="text-[14px] leading-relaxed text-text-secondary pb-4">
-                {faq.answer}
-              </AccordionContent>
-            </AccordionItem>
-          ))}
-        </Accordion>
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-40px" }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
+        >
+          <Accordion
+            type="single"
+            collapsible
+            className="flex flex-col gap-2"
+          >
+            {faqs.map((faq, i) => (
+              <AccordionItem
+                key={i}
+                value={`faq-${i}`}
+                className="bg-white rounded-sm border border-border-light px-6 data-[state=open]:border-maroon/20"
+              >
+                <AccordionTrigger className="text-[15px] font-medium text-text-primary text-left py-4 cursor-pointer hover:no-underline">
+                  {faq.question}
+                </AccordionTrigger>
+                <AccordionContent className="text-[14px] leading-relaxed text-text-secondary pb-4">
+                  {faq.answer}
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </motion.div>
       </div>
     </section>
   );

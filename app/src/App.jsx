@@ -1,6 +1,7 @@
 import Header from "./components/sections/Header";
 import Hero from "./components/sections/Hero";
 import SocialProof from "./components/sections/SocialProof";
+import PainPoints from "./components/sections/PainPoints";
 import Features from "./components/sections/Features";
 import Vorteile from "./components/sections/Vorteile";
 import Foerderung from "./components/sections/Foerderung";
@@ -17,6 +18,7 @@ function App() {
       <main>
         <Hero />
         <SocialProof />
+        <PainPoints />
         <Features />
         <Vorteile />
         <Foerderung />
