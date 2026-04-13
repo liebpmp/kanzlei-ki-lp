@@ -19,8 +19,8 @@ export default function Hero() {
               transition={{ duration: 0.6, ease, delay: 0.1 }}
             >
               <span className="size-2 rounded-full bg-emerald animate-pulse" />
-              <span className="text-[13px] text-text-secondary font-medium">
-                Staatlich geförderte KI-Implementierung{" "}<br className="md:hidden" />im Wert von 250.000€
+              <span className="text-[13px] text-text-secondary font-medium whitespace-nowrap">
+                Staatlich geförderte KI-Implementierung im Wert von 250.000€
               </span>
             </motion.div>
 
@@ -86,10 +86,6 @@ export default function Hero() {
               <div className="inline-flex items-center gap-1.5 bg-emerald/10 text-emerald px-3.5 py-2 rounded-[2px] text-[13px] font-medium">
                 <BadgeCheck className="size-3.5" />
                 Kein Eigenanteil
-              </div>
-              <div className="inline-flex items-center gap-1.5 bg-red-50 text-red-600 px-3.5 py-2 rounded-[2px] text-[13px] font-semibold animate-pulse">
-                <span className="size-1.5 rounded-full bg-red-500" />
-                Nur 3 Plätze in Q2
               </div>
             </motion.div>
           </div>
