@@ -13,6 +13,7 @@ import AgentDeploy from "./components/sections/AgentDeploy";
 import AgentBoard from "./components/sections/AgentBoard";
 import PrivateLLM from "./components/sections/PrivateLLM";
 import Schulung from "./components/sections/Schulung";
+import StaatlicheFinanzierung from "./components/sections/StaatlicheFinanzierung";
 import FAQ from "./components/sections/FAQ";
 import FinalCTA from "./components/sections/FinalCTA";
 import Footer from "./components/sections/Footer";
@@ -36,6 +37,7 @@ function App() {
         <AgentBoard />
         <PrivateLLM />
         <Schulung />
+        <StaatlicheFinanzierung />
         <FAQ />
         <FinalCTA />
       </main>

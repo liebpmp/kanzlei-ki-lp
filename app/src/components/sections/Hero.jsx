@@ -20,7 +20,7 @@ export default function Hero() {
             >
               <span className="size-2 rounded-full bg-emerald animate-pulse" />
               <span className="text-[13px] text-text-secondary font-medium">
-                Staatlich gefördert durch das Qualifizierungschancengesetz
+                Staatlich geförderte KI-Implementierung im Wert von 250.000€
               </span>
             </motion.div>
 
