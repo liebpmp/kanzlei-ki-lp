@@ -161,6 +161,25 @@ export default function Foerderung() {
             </motion.div>
           ))}
         </motion.div>
+
+        {/* Urgency note */}
+        <motion.div
+          className="flex items-center justify-center gap-3 mt-10 pt-8 border-t border-white/[0.06]"
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.6, ease, delay: 0.5 }}
+        >
+          <div className="flex items-center gap-2 bg-white/[0.05] border border-white/[0.1] rounded-[2px] px-5 py-3">
+            <span className="relative flex h-2 w-2 shrink-0">
+              <span className="absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75 animate-ping" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-400" />
+            </span>
+            <span className="text-[13px] text-white/70">
+              <span className="text-amber-400 font-semibold">Achtung:</span> Die Fördertöpfe sind begrenzt — wer zuerst beantragt, wird zuerst bewilligt.
+            </span>
+          </div>
+        </motion.div>
       </div>
 
       {/* Gradient transition line at bottom */}

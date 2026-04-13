@@ -221,6 +221,19 @@ export default function StaatlicheFinanzierung() {
           </p>
         </motion.div>
 
+        {/* Application counter */}
+        <motion.div
+          className="flex items-center justify-center gap-3 mb-10"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+        >
+          <div className="flex items-center gap-2 text-[13px] text-text-white-muted">
+            <span className="text-white font-semibold">127 Förderanträge</span> allein in den letzten 30 Tagen bewilligt
+          </div>
+        </motion.div>
+
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
           <TrustSeal
             icon={Shield}

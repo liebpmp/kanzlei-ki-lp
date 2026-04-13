@@ -1,3 +1,4 @@
+import ScarcityBar from "./components/ui/ScarcityBar";
 import Header from "./components/sections/Header";
 import Hero from "./components/sections/Hero";
 import SocialProof from "./components/sections/SocialProof";
@@ -21,13 +22,14 @@ import Footer from "./components/sections/Footer";
 function App() {
   return (
     <>
+      <ScarcityBar />
       <Header />
       <main>
         <Hero />
         <SocialProof />
         <PainPoints />
-        <Foerderung />
         <Vorteile />
+        <Foerderung />
         <Ablauf />
         <Testimonials />
         <ImplHeadline />

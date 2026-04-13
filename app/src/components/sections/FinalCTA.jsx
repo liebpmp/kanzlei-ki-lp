@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowRight, Phone } from "lucide-react";
+import { ArrowRight, Phone, Clock, Users, ShieldCheck } from "lucide-react";
 
 const ease = [0.16, 1, 0.3, 1];
 
@@ -20,16 +20,35 @@ export default function FinalCTA() {
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.7, ease }}
         >
+          {/* Scarcity urgency badge */}
+          <motion.div
+            className="inline-flex items-center gap-2 bg-red-500/10 border border-red-500/20 rounded-full px-4 py-2"
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, ease }}
+          >
+            <span className="relative flex h-2 w-2">
+              <span className="absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75 animate-ping" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500" />
+            </span>
+            <span className="text-[13px] font-semibold text-red-400">
+              Nur noch 3 Plätze frei für Q2 2026
+            </span>
+          </motion.div>
+
           <h2 className="text-[clamp(1.75rem,4vw,2.75rem)] leading-tight tracking-[-0.02em] text-white">
             Bereit für Ihren KI-Mitarbeiter?
           </h2>
-          <p className="text-[16px] leading-relaxed text-text-white-muted max-w-[480px]">
+          <p className="text-[16px] leading-relaxed text-text-white-muted max-w-[520px]">
             Vereinbaren Sie jetzt eine kostenlose Potenzialanalyse. Wir
-            berechnen, wie viel Förderung für Ihre Kanzlei möglich ist.
+            berechnen, wie viel Förderung für Ihre Kanzlei möglich ist —
+            bevor die letzten Plätze vergeben sind.
           </p>
 
+          {/* CTA Button with urgency */}
           <motion.div
-            className="flex flex-col sm:flex-row items-center gap-3 pt-4"
+            className="flex flex-col items-center gap-4 pt-4"
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
@@ -37,22 +56,36 @@ export default function FinalCTA() {
           >
             <a
               href="#"
-              className="inline-flex items-center gap-2.5 bg-maroon hover:bg-maroon-hover text-white text-[15px] font-medium px-7 py-3.5 rounded-[2px] transition-all duration-300 cursor-pointer hover:shadow-[0_4px_20px_rgba(162,30,41,0.4)]"
+              className="group inline-flex items-center gap-2.5 bg-maroon hover:bg-maroon-hover text-white text-[16px] font-semibold px-8 py-4 rounded-[2px] transition-all duration-300 cursor-pointer hover:shadow-[0_4px_30px_rgba(162,30,41,0.5)] animate-pulse-ring"
             >
-              Jetzt Potenzialanalyse vereinbaren
-              <ArrowRight className="size-4" />
+              Jetzt Platz sichern — Kostenlose Analyse
+              <ArrowRight className="size-4 group-hover:translate-x-1 transition-transform" />
             </a>
+            <span className="text-[12px] text-text-white-muted">
+              Unverbindlich · 15 Minuten · Sofort-Ergebnis
+            </span>
           </motion.div>
 
+          {/* Social proof micro-stats */}
           <motion.div
-            className="flex items-center gap-2 text-text-white-muted text-[14px] pt-2"
+            className="flex flex-wrap items-center justify-center gap-4 md:gap-6 pt-6 border-t border-white/[0.08] mt-4"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.5, delay: 0.4 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.4 }}
           >
-            <Phone className="size-4" />
-            <span>Oder rufen Sie uns an: +49 XXX XXXXXXX</span>
+            <div className="flex items-center gap-2 text-[13px] text-text-white-muted">
+              <Users className="size-4 text-emerald" />
+              <span><span className="text-white font-semibold">47 Kanzleien</span> nutzen bereits KI-Mitarbeiter</span>
+            </div>
+            <div className="flex items-center gap-2 text-[13px] text-text-white-muted">
+              <Clock className="size-4 text-emerald" />
+              <span>Ø <span className="text-white font-semibold">14 Tage</span> bis zur Förderzusage</span>
+            </div>
+            <div className="flex items-center gap-2 text-[13px] text-text-white-muted">
+              <ShieldCheck className="size-4 text-emerald" />
+              <span><span className="text-white font-semibold">100%</span> Förderquote</span>
+            </div>
           </motion.div>
         </motion.div>
       </div>

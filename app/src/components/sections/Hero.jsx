@@ -87,6 +87,10 @@ export default function Hero() {
                 <BadgeCheck className="size-3.5" />
                 Kein Eigenanteil
               </div>
+              <div className="inline-flex items-center gap-1.5 bg-red-50 text-red-600 px-3.5 py-2 rounded-[2px] text-[13px] font-semibold animate-pulse">
+                <span className="size-1.5 rounded-full bg-red-500" />
+                Nur 3 Plätze in Q2
+              </div>
             </motion.div>
           </div>
 

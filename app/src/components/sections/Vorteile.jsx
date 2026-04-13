@@ -76,7 +76,7 @@ function ActivityFeed() {
   }, [isInView]);
 
   return (
-    <div ref={ref} className="bg-white border border-border-light rounded-2xl overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.06)]">
+    <div ref={ref} className="bg-white border border-border-light rounded-2xl overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.06)] max-w-full">
       {/* Window chrome */}
       <div className="flex items-center justify-between px-5 py-3 border-b border-border-light bg-cream-dark/50">
         <div className="flex items-center gap-3">
@@ -97,7 +97,7 @@ function ActivityFeed() {
       </div>
 
       {/* Activity feed */}
-      <div className="p-4 space-y-2">
+      <div className="p-3 md:p-4 space-y-2 overflow-hidden">
         {capabilities.map((cap, i) => {
           const isActive = i === activeIdx;
           return (
@@ -160,8 +160,8 @@ function ActivityFeed() {
 
 export default function Vorteile() {
   return (
-    <section id="vorteile" className="bg-cream py-20 md:py-28 lg:py-32">
-      <div className="mx-auto max-w-[1200px] px-6 lg:px-10">
+    <section id="vorteile" className="bg-cream py-20 md:py-28 lg:py-32 overflow-hidden">
+      <div className="mx-auto max-w-[1200px] px-6 lg:px-10 overflow-hidden">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left: Text */}
           <motion.div
@@ -177,7 +177,7 @@ export default function Vorteile() {
               </span>
             </div>
             <h2 className="text-[clamp(1.75rem,4vw,2.75rem)] leading-tight tracking-tight text-text-primary mb-5">
-              Ein KI-Mitarbeiter, der nie krank wird
+              Die Lösung: Ein KI-Mitarbeiter, der nie krank wird
               <br className="hidden md:block" /> und nie kündigt
             </h2>
             <p className="text-[16px] leading-relaxed text-text-secondary mb-8 max-w-lg">
