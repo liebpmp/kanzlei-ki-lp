@@ -184,3 +184,26 @@
 .animate-pulse-ring {
   animation: pulse-ring 2s ease-out infinite;
 }
+
+/* V6b — New premium section additions */
+.text-gradient-gold {
+  background: linear-gradient(135deg, #D3A55B, #E8C97A);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+@keyframes typing-dot {
+  0%, 60%, 100% { opacity: 0.3; transform: translateY(0); }
+  30% { opacity: 1; transform: translateY(-4px); }
+}
+
+@keyframes draw-line {
+  0% { stroke-dashoffset: 100; }
+  100% { stroke-dashoffset: 0; }
+}
+
+@keyframes progress-fill {
+  0% { width: 0%; }
+  100% { width: var(--target-width); }
+}
