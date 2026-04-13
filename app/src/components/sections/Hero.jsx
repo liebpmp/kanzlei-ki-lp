@@ -19,8 +19,8 @@ export default function Hero() {
               transition={{ duration: 0.6, ease, delay: 0.1 }}
             >
               <span className="size-2 rounded-full bg-emerald animate-pulse" />
-              <span className="text-[13px] text-text-secondary font-medium whitespace-nowrap">
-                Staatlich geförderte KI-Implementierung im Wert von 250.000€
+              <span className="text-[13px] text-text-secondary font-medium text-center">
+                Staatlich geförderte KI-Implementierung<br className="md:hidden" /> im Wert von 250.000€
               </span>
             </motion.div>
 
