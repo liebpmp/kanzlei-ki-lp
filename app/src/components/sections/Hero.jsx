@@ -28,8 +28,8 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, ease, delay: 0.25 }}
             >
-              KI-Mitarbeiter für Ihre Steuerkanzlei —{" "}
-              <span className="text-emerald">100% staatlich gefördert</span>
+              <span className="text-maroon">KI-Mitarbeiter</span> für Ihre Steuerkanzlei —{" "}
+              <span style={{ color: '#1B2E47' }}>100% staatlich gefördert</span>
             </motion.h1>
             <motion.p
               className="text-[clamp(1rem,2vw,1.2rem)] leading-[1.7] text-text-secondary max-w-[680px] mx-auto"

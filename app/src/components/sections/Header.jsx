@@ -22,9 +22,9 @@ export default function Header() {
           />
           <span className="text-text-muted text-[20px] font-light select-none">×</span>
           <img
-            src="./steuerclara-logo.svg"
+            src="./steuerclara-logo.jpg"
             alt="SteuerClara"
-            className="h-7 w-auto"
+            className="h-8 w-auto"
           />
         </a>
 
