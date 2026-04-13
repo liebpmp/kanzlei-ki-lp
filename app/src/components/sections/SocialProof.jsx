@@ -10,7 +10,7 @@ export default function SocialProof() {
             <span className="text-[14px] font-medium">400+ Unternehmen erfolgreich begleitet</span>
           </div>
           <div className="hidden md:block w-px h-5 bg-border-light" />
-          <div className="flex flex-wrap items-center justify-center gap-6 text-[13px] text-text-muted">
+          <div className="flex flex-wrap items-center justify-center gap-8 text-[13px] text-text-muted font-medium tracking-wide uppercase">
             <span className="font-medium">IHK</span>
             <span className="font-medium">Agentur für Arbeit</span>
             <span className="font-medium">Qualifizierungschancengesetz</span>
