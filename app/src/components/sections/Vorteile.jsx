@@ -1,4 +1,5 @@
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
+import { useRef, useState, useEffect } from "react";
 import {
   Phone,
   Database,
@@ -8,118 +9,206 @@ import {
   Cog,
 } from "lucide-react";
 
-const benefits = [
+const ease = [0.16, 1, 0.3, 1];
+
+const capabilities = [
   {
     icon: Phone,
     title: "Telefon-KI (Clara)",
-    description:
-      "Nimmt jeden Anruf an, beantwortet Standardfragen, bucht Termine, leitet nur Wichtiges weiter. 24/7, keine Wartezeiten.",
+    desc: "Nimmt jeden Anruf an, beantwortet Fragen, bucht Termine",
+    metric: "24/7",
+    metricLabel: "Erreichbarkeit",
+    activity: "Anruf von Mandant Müller — Termin gebucht für Do. 14:00",
   },
   {
     icon: Database,
     title: "DATEV-Automatisierung",
-    description:
-      "Belege automatisch verarbeiten, Buchungsvorschläge generieren, FiBu-Vorbereitung auf Knopfdruck.",
+    desc: "Belege verarbeiten, Buchungsvorschläge, FiBu-Vorbereitung",
+    metric: "85%",
+    metricLabel: "Zeitersparnis",
+    activity: "47 Belege klassifiziert — DATEV-Import bereit",
   },
   {
     icon: CalendarClock,
     title: "Fristen-Management",
-    description:
-      "Automatische Überwachung aller Abgabefristen. Mandanten werden rechtzeitig erinnert, Unterlagen angefordert.",
+    desc: "Automatische Überwachung aller Abgabefristen",
+    metric: "0",
+    metricLabel: "Verpasste Fristen",
+    activity: "USt-VA März — Erinnerung an 3 Mandanten versandt",
   },
   {
     icon: MessageSquare,
     title: "Mandanten-Kommunikation",
-    description:
-      "Automatische Follow-ups, Statusupdates, Dokumentenanforderungen per Mail und WhatsApp.",
+    desc: "Follow-ups, Statusupdates, Dokumentenanforderungen",
+    metric: "∞",
+    metricLabel: "Geduld",
+    activity: "Beleg-Mahnung an Weber KG — 3. Erinnerung (freundlich)",
   },
   {
     icon: Receipt,
     title: "Vorbereitende Buchhaltung",
-    description:
-      "KI sortiert, kategorisiert und bereitet Belege vor — Ihre Mitarbeiter prüfen nur noch.",
+    desc: "KI sortiert, kategorisiert und bereitet Belege vor",
+    metric: "3x",
+    metricLabel: "Schneller",
+    activity: "Reisekostenabrechnung Schmidt — fertig zur Prüfung",
   },
   {
     icon: Cog,
-    title: "Individuelle Automatisierungen",
-    description:
-      "Jede Kanzlei hat eigene Abläufe. Wir analysieren und automatisieren genau Ihre Prozesse.",
+    title: "Individuelle Prozesse",
+    desc: "Analyse und Automatisierung Ihrer spezifischen Abläufe",
+    metric: "100%",
+    metricLabel: "Maßgeschneidert",
+    activity: "GoBD-Prüfung abgeschlossen — alle Mandanten konform",
   },
 ];
 
-const ease = [0.16, 1, 0.3, 1];
+function ActivityFeed() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-60px" });
+  const [activeIdx, setActiveIdx] = useState(0);
 
-const containerVariants = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.1 } },
-};
+  useEffect(() => {
+    if (!isInView) return;
+    const interval = setInterval(() => {
+      setActiveIdx((prev) => (prev + 1) % capabilities.length);
+    }, 2500);
+    return () => clearInterval(interval);
+  }, [isInView]);
 
-const cardVariants = {
-  hidden: { opacity: 0, y: 24, scale: 0.95 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    transition: { duration: 0.6, ease },
-  },
-};
+  return (
+    <div ref={ref} className="bg-white border border-border-light rounded-2xl overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.06)]">
+      {/* Window chrome */}
+      <div className="flex items-center justify-between px-5 py-3 border-b border-border-light bg-cream-dark/50">
+        <div className="flex items-center gap-3">
+          <div className="flex gap-1.5">
+            <div className="h-3 w-3 rounded-full bg-red-400/60" />
+            <div className="h-3 w-3 rounded-full bg-amber-400/60" />
+            <div className="h-3 w-3 rounded-full bg-maroon/40" />
+          </div>
+          <span className="text-xs text-text-secondary">KI-Mitarbeiter — Live-Aktivität</span>
+        </div>
+        <div className="flex items-center gap-1.5">
+          <span className="relative flex h-2 w-2">
+            <span className="absolute inline-flex h-full w-full rounded-full bg-emerald opacity-75 animate-[pulse-dot_2s_ease-in-out_infinite]" />
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald" />
+          </span>
+          <span className="text-xs text-emerald font-medium">6 Agenten aktiv</span>
+        </div>
+      </div>
+
+      {/* Activity feed */}
+      <div className="p-4 space-y-2">
+        {capabilities.map((cap, i) => {
+          const isActive = i === activeIdx;
+          return (
+            <motion.div
+              key={cap.title}
+              className={`flex items-center gap-3 p-3 rounded-xl border transition-all duration-500 ${
+                isActive
+                  ? "border-maroon/20 bg-maroon/[0.03] shadow-[0_0_20px_-5px_rgba(162,30,41,0.1)]"
+                  : "border-border-light bg-cream-dark/30"
+              }`}
+              initial={{ opacity: 0, x: -20 }}
+              animate={isInView ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: 0.5, ease, delay: 0.2 + i * 0.1 }}
+            >
+              <div className={`w-8 h-8 rounded-lg flex items-center justify-center transition-colors duration-500 ${
+                isActive ? "bg-maroon/15 text-maroon" : "bg-cream-dark text-text-secondary"
+              }`}>
+                <cap.icon className="size-4" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <p className={`text-sm truncate transition-colors duration-500 ${
+                  isActive ? "text-text-primary font-medium" : "text-text-secondary"
+                }`}>
+                  {isActive ? cap.activity : cap.title}
+                </p>
+                {!isActive && (
+                  <p className="text-xs text-text-muted truncate">{cap.desc}</p>
+                )}
+              </div>
+              {isActive ? (
+                <motion.span
+                  className="text-maroon font-bold text-sm"
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ duration: 0.3, ease }}
+                >
+                  ✓
+                </motion.span>
+              ) : (
+                <div className="text-right shrink-0">
+                  <p className="text-sm font-bold text-text-primary">{cap.metric}</p>
+                  <p className="text-[10px] text-text-muted">{cap.metricLabel}</p>
+                </div>
+              )}
+            </motion.div>
+          );
+        })}
+      </div>
+
+      {/* Footer */}
+      <div className="flex items-center justify-between px-4 py-3 bg-cream-dark/30 border-t border-border-light">
+        <span className="text-xs text-text-secondary">
+          <span className="font-semibold text-text-primary">342</span> Aufgaben heute erledigt
+        </span>
+        <span className="text-xs text-emerald font-medium">Nie krank · Nie kündigt · 24/7</span>
+      </div>
+    </div>
+  );
+}
 
 export default function Vorteile() {
   return (
-    <section id="vorteile" className="bg-cream-dark py-20 md:py-28 lg:py-32">
+    <section id="vorteile" className="bg-cream py-20 md:py-28 lg:py-32">
       <div className="mx-auto max-w-[1200px] px-6 lg:px-10">
-        {/* Section header */}
-        <motion.div
-          className="flex flex-col items-center text-center gap-4 mb-16"
-          initial={{ opacity: 0, x: -32, filter: "blur(8px)" }}
-          whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.7, ease }}
-        >
-          <div className="flex items-center gap-2">
-            <span className="size-1.5 rounded-full bg-maroon" />
-            <span className="text-[13px] font-medium text-text-secondary uppercase tracking-wider">
-              Ihre Vorteile
-            </span>
-          </div>
-          <h2 className="text-[clamp(1.75rem,4vw,2.75rem)] leading-tight tracking-tight text-text-primary">
-            Ein KI-Mitarbeiter, der nie krank wird
-            <br className="hidden md:block" /> und nie kündigt
-          </h2>
-          <p className="text-[16px] leading-relaxed text-text-secondary max-w-[600px]">
-            Schritt für Schritt automatisieren wir die zeitfressendsten Prozesse
-            in Ihrer Kanzlei.
-          </p>
-        </motion.div>
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          {/* Left: Text */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.7, ease }}
+          >
+            <div className="flex items-center gap-2 mb-6">
+              <span className="size-1.5 rounded-full bg-maroon" />
+              <span className="text-[13px] font-medium text-text-secondary uppercase tracking-wider">
+                Ihre Vorteile
+              </span>
+            </div>
+            <h2 className="text-[clamp(1.75rem,4vw,2.75rem)] leading-tight tracking-tight text-text-primary mb-5">
+              Ein KI-Mitarbeiter, der nie krank wird
+              <br className="hidden md:block" /> und nie kündigt
+            </h2>
+            <p className="text-[16px] leading-relaxed text-text-secondary mb-8 max-w-lg">
+              6 spezialisierte KI-Agenten übernehmen die zeitfressendsten Prozesse Ihrer Kanzlei — gleichzeitig, rund um die Uhr, ohne Pause.
+            </p>
 
-        {/* Cards grid */}
-        <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-80px" }}
-        >
-          {benefits.map((benefit) => (
-            <motion.div
-              key={benefit.title}
-              variants={cardVariants}
-              className="flex flex-col gap-5 bg-white rounded-[2px] p-7 shadow-[0_1px_3px_rgba(0,0,0,0.04),0_1px_2px_rgba(0,0,0,0.02)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_4px_16px_rgba(0,0,0,0.06)]"
-            >
-              <div className="flex items-center justify-center size-10 rounded-sm bg-cream">
-                <benefit.icon className="size-5 text-maroon" />
-              </div>
-              <div className="flex flex-col gap-2">
-                <h3 className="text-[16px] font-semibold text-text-primary">
-                  {benefit.title}
-                </h3>
-                <p className="text-[14px] leading-relaxed text-text-secondary">
-                  {benefit.description}
-                </p>
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
+            {/* Quick stats */}
+            <div className="grid grid-cols-3 gap-3">
+              {[
+                { val: "6", label: "KI-Agenten" },
+                { val: "24/7", label: "Verfügbar" },
+                { val: "85%", label: "Zeitersparnis" },
+              ].map((stat) => (
+                <div key={stat.label} className="flex flex-col items-center text-center bg-white rounded-lg p-4 border border-border-light">
+                  <span className="text-xl font-bold text-maroon">{stat.val}</span>
+                  <span className="text-[11px] text-text-secondary mt-1">{stat.label}</span>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Right: Live Activity Feed */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.8, ease, delay: 0.2 }}
+          >
+            <ActivityFeed />
+          </motion.div>
+        </div>
       </div>
     </section>
   );

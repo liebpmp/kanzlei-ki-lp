@@ -2,10 +2,11 @@ import Header from "./components/sections/Header";
 import Hero from "./components/sections/Hero";
 import SocialProof from "./components/sections/SocialProof";
 import PainPoints from "./components/sections/PainPoints";
-import Vorteile from "./components/sections/Vorteile";
-import Testimonials from "./components/sections/Testimonials";
 import Foerderung from "./components/sections/Foerderung";
+import Vorteile from "./components/sections/Vorteile";
 import Ablauf from "./components/sections/Ablauf";
+import Testimonials from "./components/sections/Testimonials";
+import ImplHeadline from "./components/sections/ImplHeadline";
 import KanzleiAudit from "./components/sections/KanzleiAudit";
 import KanzleiDatenbank from "./components/sections/KanzleiDatenbank";
 import AgentDeploy from "./components/sections/AgentDeploy";
@@ -24,10 +25,11 @@ function App() {
         <Hero />
         <SocialProof />
         <PainPoints />
-        <Vorteile />
-        <Testimonials />
         <Foerderung />
+        <Vorteile />
         <Ablauf />
+        <Testimonials />
+        <ImplHeadline />
         <KanzleiAudit />
         <KanzleiDatenbank />
         <AgentDeploy />
