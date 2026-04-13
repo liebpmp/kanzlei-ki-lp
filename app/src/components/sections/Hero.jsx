@@ -23,24 +23,24 @@ export default function Hero() {
 
           <div className="flex flex-col gap-6">
             <motion.h1
-              className="text-[clamp(2.5rem,6vw,4rem)] leading-[1.06] tracking-[-0.03em] text-text-primary font-[800]"
+              className="text-[clamp(2.5rem,6vw,4.25rem)] leading-[1.06] tracking-[-0.03em] text-text-primary font-[800]"
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, ease, delay: 0.25 }}
             >
-              <span className="text-maroon">KI-Mitarbeiter</span> für Ihre
-              Steuerkanzlei —{" "}
-              <span className="text-emerald">100% kostenlos</span>
+              KI-Mitarbeiter für Ihre Steuerkanzlei —{" "}
+              <span className="text-emerald">100% staatlich gefördert</span>
             </motion.h1>
             <motion.p
-              className="text-[clamp(1rem,2vw,1.175rem)] leading-[1.7] text-text-secondary max-w-[640px] mx-auto"
+              className="text-[clamp(1rem,2vw,1.2rem)] leading-[1.7] text-text-secondary max-w-[680px] mx-auto"
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, ease, delay: 0.4 }}
             >
-              Ihre Mitarbeiter werden zu IHK-zertifizierten KI-Fachkräften. Die
-              Schulung ist kostenlos. Und parallel bauen wir Ihnen einen
-              KI-Mitarbeiter, der immer mehr Prozesse übernimmt.
+              Dank des <strong className="text-text-primary">Qualifizierungschancengesetzes</strong> wird
+              die Implementierung von KI-Prozessen in Ihrer Kanzlei jetzt staatlich gefördert — und
+              Ihre Mitarbeiter werden dabei sogar <strong className="text-text-primary">kostenlos zu IHK-zertifizierten
+              KI-Fachkräften</strong> geschult.
             </motion.p>
           </div>
 

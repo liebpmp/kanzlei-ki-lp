@@ -14,23 +14,14 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm shadow-[0_1px_0_rgba(0,0,0,0.06)]">
       <div className="mx-auto max-w-[1200px] flex items-center justify-between px-6 py-3 lg:px-10">
-        <a href="#" className="flex items-center gap-2.5 cursor-pointer">
+        <a href="#" className="flex items-center gap-3 cursor-pointer">
           <img
-            src="/fp-logo.png"
-            alt="Förderperspektive"
-            className="h-8 w-auto"
+            src="./fp-logo.png"
+            alt="Förderperspektive Deutschland"
+            className="h-9 w-auto"
           />
-          <span className="text-text-muted text-[17px] font-light">&times;</span>
-          <div className="flex items-center gap-1.5">
-            <img
-              src="/steuerclara-logo.png"
-              alt="SteuerClara"
-              className="size-7"
-            />
-            <span className="font-heading text-[15px] font-semibold tracking-tight text-maroon">
-              SteuerClara
-            </span>
-          </div>
+          <span className="text-text-muted text-[20px] font-light select-none">×</span>
+          <SteuerClaraLogo />
         </a>
 
         <nav className="hidden md:flex items-center gap-8">
@@ -85,5 +76,24 @@ export default function Header() {
         </div>
       )}
     </header>
+  );
+}
+
+/* SteuerClara text logo - matches their Framer site (maroon text) */
+function SteuerClaraLogo() {
+  return (
+    <svg viewBox="0 0 160 28" className="h-7 w-auto" aria-label="SteuerClara">
+      <text
+        x="0"
+        y="22"
+        fontFamily="'Inter', sans-serif"
+        fontWeight="700"
+        fontSize="22"
+        letterSpacing="-0.5"
+        fill="#A21E29"
+      >
+        SteuerClara
+      </text>
+    </svg>
   );
 }
