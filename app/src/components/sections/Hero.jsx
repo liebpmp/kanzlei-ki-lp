@@ -13,7 +13,7 @@ export default function Hero() {
           <div className="flex flex-col items-center lg:items-start text-center lg:text-left max-w-[600px] gap-10 flex-1">
             {/* Label pill */}
             <motion.div
-              className="inline-flex items-center gap-2 rounded-full bg-white px-3.5 py-2 shadow-[0_1px_2px_rgba(8,8,8,0.05),0_3px_3px_rgba(8,8,8,0.04),inset_0_1px_1px_1px_rgba(255,255,255,0.15)]"
+              className="flex md:inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 md:px-3.5 md:py-2 shadow-[0_1px_2px_rgba(8,8,8,0.05),0_3px_3px_rgba(8,8,8,0.04),inset_0_1px_1px_1px_rgba(255,255,255,0.15)]"
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease, delay: 0.1 }}
